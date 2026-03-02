@@ -1,0 +1,17 @@
+
+# GitHub App Manifest (paste into "Create with Manifest")
+name: Zero Nonsense Licenser
+url: https://zerononsense.dev
+hook_attributes:
+  url: https://zerononsense.dev/api/webhook
+redirect_url: https://zerononsense.dev/installed
+callback_urls:
+  - https://zerononsense.dev/oauth/callback
+public: false
+default_permissions:
+  metadata: read
+  contents: read
+default_events:
+  - marketplace_purchase
+  - installation
+  - installation_repositories
