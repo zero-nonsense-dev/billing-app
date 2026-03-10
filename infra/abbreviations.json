@@ -1,0 +1,8 @@
+{
+  "appContainerApps": "ca-",
+  "appManagedEnvironments": "cae-",
+  "containerRegistryRegistries": "cr",
+  "keyVaultVaults": "kv-",
+  "managedIdentityUserAssignedIdentities": "id-",
+  "operationalInsightsWorkspaces": "log-"
+}
