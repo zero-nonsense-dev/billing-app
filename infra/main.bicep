@@ -12,12 +12,12 @@ param logRetentionDays int = 30
 
 // ─── Naming ───────────────────────────────────────────────────────────────────
 var abbrs = loadJsonContent('./abbreviations.json')
-var resourceToken = toLower(uniqueString(subscription().id, environmentName, location))
+var resourceSuffix = 'billingapp${toLower(environmentName)}'
 var tags = { 'azd-env-name': environmentName }
 
 // ─── Log Analytics / Application Insights ────────────────────────────────────
 resource logWorkspace 'Microsoft.OperationalInsights/workspaces@2023-09-01' = {
-  name: '${abbrs.operationalInsightsWorkspaces}${resourceToken}'
+  name: '${abbrs.operationalInsightsWorkspaces}${resourceSuffix}'
   location: location
   tags: tags
   properties: {
@@ -28,7 +28,7 @@ resource logWorkspace 'Microsoft.OperationalInsights/workspaces@2023-09-01' = {
 
 // ─── Container Registry ───────────────────────────────────────────────────────
 resource acr 'Microsoft.ContainerRegistry/registries@2023-11-01-preview' = {
-  name: '${abbrs.containerRegistryRegistries}${resourceToken}'
+  name: '${abbrs.containerRegistryRegistries}${resourceSuffix}'
   location: location
   tags: tags
   sku: { name: 'Basic' }
@@ -39,7 +39,7 @@ resource acr 'Microsoft.ContainerRegistry/registries@2023-11-01-preview' = {
 
 // ─── Container Apps Environment ──────────────────────────────────────────────
 resource caEnv 'Microsoft.App/managedEnvironments@2024-03-01' = {
-  name: '${abbrs.appManagedEnvironments}${resourceToken}'
+  name: '${abbrs.appManagedEnvironments}${resourceSuffix}'
   location: location
   tags: tags
   properties: {
@@ -56,7 +56,7 @@ resource caEnv 'Microsoft.App/managedEnvironments@2024-03-01' = {
 // ─── Managed Identity ─────────────────────────────────────────────────────────
 // Single identity shared between the Container App (secretless ACR pull + KV read)
 resource identity 'Microsoft.ManagedIdentity/userAssignedIdentities@2023-01-31' = {
-  name: '${abbrs.managedIdentityUserAssignedIdentities}${resourceToken}'
+  name: '${abbrs.managedIdentityUserAssignedIdentities}${resourceSuffix}'
   location: location
   tags: tags
 }
@@ -77,7 +77,7 @@ resource acrPullRole 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
 
 // ─── Key Vault ────────────────────────────────────────────────────────────────
 resource kv 'Microsoft.KeyVault/vaults@2023-07-01' = {
-  name: '${abbrs.keyVaultVaults}${resourceToken}'
+  name: '${abbrs.keyVaultVaults}${resourceSuffix}'
   location: location
   tags: tags
   properties: {
@@ -154,7 +154,7 @@ resource secretPlanIds 'Microsoft.KeyVault/vaults/secrets@2023-07-01' = {
 
 // ─── Container App ────────────────────────────────────────────────────────────
 resource containerApp 'Microsoft.App/containerApps@2024-03-01' = {
-  name: '${abbrs.appContainerApps}${resourceToken}'
+  name: '${abbrs.appContainerApps}${resourceSuffix}'
   location: location
   tags: union(tags, { 'azd-service-name': 'billing-app' })
   identity: {
