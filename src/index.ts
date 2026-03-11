@@ -34,9 +34,9 @@ const ghApp = new App({
 });
 
 // ghApp.octokit is authenticated with an App-level JWT via @octokit/auth-app.
-// Cast to @octokit/rest's Octokit for type-safe .rest.* access; the REST endpoint
-// methods are present at runtime because @octokit/app bundles @octokit/plugin-rest-endpoint-methods.
-const appOctokit = ghApp.octokit as unknown as Octokit;
+// Use the generic request() API since .rest.apps.* methods are not guaranteed
+// on this Octokit instance at runtime.
+const appOctokit = ghApp.octokit;
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 function storeKey(type: string, id: number): string {
@@ -140,8 +140,8 @@ async function reconcile(): Promise<void> {
     let page = 1;
     while (true) {
       try {
-        const { data } = await appOctokit.rest.apps.listAccountsForPlan({
-          plan_id:  planId,
+        const { data } = await appOctokit.request('GET /marketplace_listing/plans/{plan_id}/accounts', {
+          plan_id: planId,
           per_page: 100,
           page,
         });
@@ -214,7 +214,7 @@ server.get('/setup', async (req, res) => {
   }
 
   try {
-    const { data: inst } = await appOctokit.rest.apps.getInstallation({
+    const { data: inst } = await appOctokit.request('GET /app/installations/{installation_id}', {
       installation_id: installationId,
     });
     const account = inst.account as { login: string; type: string; id: number } | null;
@@ -295,7 +295,10 @@ server.get('/license', async (req, res) => {
     await callerOctokit.rest.repos.get({ owner, repo });
 
     // Step 2: resolve the app installation server-side via App JWT (no client ID trusted)
-    const { data: installation } = await appOctokit.rest.apps.getRepoInstallation({ owner, repo });
+    const { data: installation } = await appOctokit.request('GET /repos/{owner}/{repo}/installation', {
+      owner,
+      repo,
+    });
     const account = installation.account as { login: string; type: string; id: number } | null;
     if (!account) {
       res.status(404).json({ ok: false, error: 'App not installed for this repository' });
