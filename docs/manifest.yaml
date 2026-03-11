@@ -3,11 +3,16 @@
 name: Zero Nonsense Licenser
 url: https://zerononsense.dev
 hook_attributes:
-  url: https://zerononsense.dev/api/webhook
-redirect_url: https://zerononsense.dev/installed
+  url: https://billing.zerononsense.dev/api/webhook
+redirect_url: https://billing.zerononsense.dev/installed
+# setup_url is required for paid Marketplace listings.
+# GitHub redirects the installing admin here after install or update.
+# setup_on_update: true fires the redirect on plan changes as well.
+setup_url: https://billing.zerononsense.dev/setup
+setup_on_update: true
 callback_urls:
-  - https://zerononsense.dev/oauth/callback
-public: false
+  - https://billing.zerononsense.dev/oauth/callback
+public: true
 default_permissions:
   metadata: read
   contents: read

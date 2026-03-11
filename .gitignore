@@ -14,3 +14,10 @@ pnpm-debug.log*
 
 # OS
 .DS_Store
+
+# Runtime data
+/data/
+
+# Secrets
+.env
+.env.*
