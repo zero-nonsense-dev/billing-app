@@ -1,0 +1,97 @@
+name: Test AI Code Reviewer (Production)
+description: Test workflow for AI Code Reviewer with prod resources
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+  pull_request_review_comment:
+    types: [created]
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+
+jobs:
+  ai-review:
+    name: AI Code Review
+    runs-on: ubuntu-latest
+    if: |
+      github.event_name == 'pull_request' ||
+      github.event_name == 'pull_request_review_comment' ||
+      (github.event_name == 'issue_comment' && contains(github.event.comment.body, '/review'))
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run AI Code Reviewer
+        uses: ./
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          
+          # Azure OpenAI Configuration (prod resources)
+          azure-openai-endpoint: ${{ secrets.AZURE_OPENAI_ENDPOINT }}
+          azure-openai-api-key: ${{ secrets.AZURE_OPENAI_API_KEY }}
+          azure-openai-deployment: ${{ vars.AZURE_OPENAI_DEPLOYMENT }}
+          azure-openai-api-version: ${{ vars.AZURE_OPENAI_API_VERSION }}
+          
+          # Billing Integration
+          billing-endpoint: ${{ secrets.BILLING_ENDPOINT }}
+          
+          # Plan Limits (free/pro/enterprise)
+          plan-limits-json: |
+            {
+              "free": {"maxFindings": 20, "maxFilesScanned": 30},
+              "pro": {"maxFindings": 100, "maxFilesScanned": 150},
+              "enterprise": {"maxFindings": 500, "maxFilesScanned": 500}
+            }
+          
+          # Review Configuration
+          review-types: "bugs,security,test-gaps,performance"
+          comment-mode: "both"
+          fail-on-severities: "high,critical"
+          
+          # File Patterns
+          include-patterns: |
+            **/*.ts
+            **/*.tsx
+            **/*.js
+            **/*.jsx
+            **/*.py
+            **/*.go
+            **/*.java
+            **/*.cs
+          exclude-patterns: |
+            **/*.lock
+            **/dist/**
+            **/build/**
+            **/vendor/**
+            **/.next/**
+            **/*.min.js
+            **/*.pem
+            **/*.key
+          
+          # Monorepo Profiles (optional)
+          review-profiles-path: .ai-reviewer/profiles.json
+          
+          # Audit Logging (optional but recommended)
+          log-analytics-workspace-id: ${{ secrets.LOG_ANALYTICS_WORKSPACE_ID }}
+          log-analytics-shared-key: ${{ secrets.LOG_ANALYTICS_SHARED_KEY }}
+          log-analytics-table: AiCodeReviewerAudit
+      
+      - name: Comment on PR (on failure)
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '⚠️ AI Code Reviewer encountered an error. Please check the action logs.'
+            })
