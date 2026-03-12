@@ -1,0 +1,46 @@
+name: AI Code Review
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+  pull_request_review_comment:
+    types: [created]
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+
+jobs:
+  review:
+    if: |
+      github.event_name == 'pull_request' ||
+      github.event_name == 'pull_request_review_comment' ||
+      (github.event_name == 'issue_comment' && contains(github.event.comment.body, '/review'))
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: AI Code Review
+        uses: ./
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          azure-openai-endpoint: ${{ secrets.AZURE_OPENAI_ENDPOINT }}
+          azure-openai-api-key: ${{ secrets.AZURE_OPENAI_API_KEY }}
+          azure-openai-deployment: ${{ vars.AZURE_OPENAI_DEPLOYMENT }}
+          azure-openai-api-version: ${{ vars.AZURE_OPENAI_API_VERSION }}
+          billing-endpoint: https://billing.zerononsense.dev/license
+          max-findings-per-run: 100
+          plan-limits-json: '{"free":20,"pro":100,"enterprise":500}'
+          review-types: bugs,security,test-gaps
+          review-profiles-path: .ai-reviewer/profiles.json
+          comment-mode: both
+          fail-on-severities: high,critical
+          include-patterns: "**/*.ts,**/*.tsx,**/*.js,**/*.jsx,**/*.py,**/*.go,**/*.java,**/*.cs"
+          exclude-patterns: "**/*.lock,**/dist/**,**/build/**,**/vendor/**,**/.next/**,**/*.min.js,**/*.pem,**/*.key,**/*.p12,**/*.cer,**/.env*"
+          log-analytics-workspace-id: ${{ secrets.LOG_ANALYTICS_WORKSPACE_ID }}
+          log-analytics-shared-key: ${{ secrets.LOG_ANALYTICS_SHARED_KEY }}
+          log-analytics-table: AiCodeReviewerAudit

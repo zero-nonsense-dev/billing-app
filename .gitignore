@@ -1,23 +1,7 @@
-
-# Dependencies
-/node_modules
-
-# Builds
-/dist
-/*.tgz
-
-# Logs
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-
-# OS
-.DS_Store
-
-# Runtime data
-/data/
-
-# Secrets
+node_modules/
+dist/
 .env
-.env.*
+*.log
+*.tmp
+.azure/
+!.azure/plan.md

@@ -3,10 +3,28 @@
   "contentVersion": "1.0.0.0",
   "parameters": {
     "environmentName": {
-      "value": "${AZURE_ENV_NAME}"
+      "value": "prod"
     },
     "location": {
-      "value": "${AZURE_LOCATION}"
+      "value": "eastus"
+    },
+    "openAIAccountName": {
+      "value": "aoai-reviewer-dev1"
+    },
+    "openAIDeploymentName": {
+      "value": "gpt-4o-mini-prod"
+    },
+    "openAIModelName": {
+      "value": "gpt-4o-mini"
+    },
+    "openAIModelVersion": {
+      "value": "2024-07-18"
+    },
+    "openAIModelFormat": {
+      "value": "OpenAI"
+    },
+    "logAnalyticsWorkspaceName": {
+      "value": "law-code-reviewer-prod"
     }
   }
 }

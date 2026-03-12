@@ -1,0 +1,19 @@
+{
+  "profiles": [
+    {
+      "name": "backend-security",
+      "patterns": ["**/*.ts", "**/*.js", "**/*.py", "**/*.go", "**/*.cs", "**/*.java"],
+      "reviewTypes": ["bugs", "security", "test-gaps"]
+    },
+    {
+      "name": "frontend-quality",
+      "patterns": ["**/*.tsx", "**/*.jsx", "**/*.vue", "**/*.svelte"],
+      "reviewTypes": ["bugs", "security", "performance", "test-gaps"]
+    },
+    {
+      "name": "infra-hardening",
+      "patterns": ["**/*.bicep", "**/*.tf", "**/*.yml", "**/*.yaml"],
+      "reviewTypes": ["security", "maintainability"]
+    }
+  ]
+}

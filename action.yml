@@ -1,0 +1,101 @@
+name: "AI Code Reviewer (Azure OpenAI)"
+description: "Reviews pull requests using Azure OpenAI, enforces billing entitlements, and posts findings as PR comments."
+author: "zerononsense.dev"
+inputs:
+  github-token:
+    description: "GitHub token used to read PR diffs and post review comments"
+    required: true
+  azure-openai-endpoint:
+    description: "Azure OpenAI endpoint, for example https://my-openai-resource.openai.azure.com"
+    required: true
+  azure-openai-api-key:
+    description: "Azure OpenAI API key"
+    required: true
+  azure-openai-deployment:
+    description: "Azure OpenAI model deployment name"
+    required: true
+  azure-openai-api-version:
+    description: "Azure OpenAI API version"
+    required: false
+    default: "2024-10-21"
+  billing-endpoint:
+    description: "Billing entitlement endpoint"
+    required: false
+    default: "https://billing.zerononsense.dev/license"
+  max-findings-per-run:
+    description: "Fallback cap when billing plan is unknown"
+    required: false
+    default: "100"
+  plan-limits-json:
+    description: "JSON object with per-plan limits: {\"free\":{\"maxFindings\":20,\"maxFilesScanned\":30},\"pro\":{\"maxFindings\":100,\"maxFilesScanned\":150},\"enterprise\":{\"maxFindings\":500,\"maxFilesScanned\":500}}"
+    required: false
+    default: '{"free":{"maxFindings":20,"maxFilesScanned":30},"pro":{"maxFindings":100,"maxFilesScanned":150},"enterprise":{"maxFindings":500,"maxFilesScanned":500}}'
+  review-types:
+    description: "Comma-separated focus areas"
+    required: false
+    default: "bugs,security,test-gaps"
+  review-profiles-path:
+    description: "Optional JSON file path with path/language review profiles"
+    required: false
+    default: ".ai-reviewer/profiles.json"
+  comment-mode:
+    description: "inline,summary,both"
+    required: false
+    default: "both"
+  fail-on-severities:
+    description: "Comma-separated severities that should fail the check"
+    required: false
+    default: "high,critical"
+  include-patterns:
+    description: "Comma-separated glob include filters"
+    required: false
+    default: "**/*.ts,**/*.tsx,**/*.js,**/*.jsx,**/*.py,**/*.go,**/*.java,**/*.cs"
+  exclude-patterns:
+    description: "Comma-separated glob exclude filters"
+    required: false
+    default: "**/*.lock,**/dist/**,**/build/**,**/vendor/**,**/.next/**,**/*.min.js,**/*.pem,**/*.key,**/*.p12,**/*.cer,**/.env*"
+  log-analytics-workspace-id:
+    description: "Optional Log Analytics workspace id for audit logs"
+    required: false
+  log-analytics-shared-key:
+    description: "Optional Log Analytics shared key for Data Collector API"
+    required: false
+  log-analytics-table:
+    description: "Custom table name without _CL suffix"
+    required: false
+    default: "AiCodeReviewerAudit"
+runs:
+  using: "composite"
+  steps:
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: "20"
+        cache: "npm"
+    - name: Install dependencies
+      shell: bash
+      run: npm ci
+    - name: Build
+      shell: bash
+      run: npm run build
+    - name: Run AI review action
+      shell: bash
+      env:
+        INPUT_GITHUB_TOKEN: ${{ inputs.github-token }}
+        INPUT_AZURE_OPENAI_ENDPOINT: ${{ inputs.azure-openai-endpoint }}
+        INPUT_AZURE_OPENAI_API_KEY: ${{ inputs.azure-openai-api-key }}
+        INPUT_AZURE_OPENAI_DEPLOYMENT: ${{ inputs.azure-openai-deployment }}
+        INPUT_AZURE_OPENAI_API_VERSION: ${{ inputs.azure-openai-api-version }}
+        INPUT_BILLING_ENDPOINT: ${{ inputs.billing-endpoint }}
+        INPUT_MAX_FINDINGS_PER_RUN: ${{ inputs.max-findings-per-run }}
+        INPUT_PLAN_LIMITS_JSON: ${{ inputs.plan-limits-json }}
+        INPUT_REVIEW_TYPES: ${{ inputs.review-types }}
+        INPUT_REVIEW_PROFILES_PATH: ${{ inputs.review-profiles-path }}
+        INPUT_COMMENT_MODE: ${{ inputs.comment-mode }}
+        INPUT_FAIL_ON_SEVERITIES: ${{ inputs.fail-on-severities }}
+        INPUT_INCLUDE_PATTERNS: ${{ inputs.include-patterns }}
+        INPUT_EXCLUDE_PATTERNS: ${{ inputs.exclude-patterns }}
+        INPUT_LOG_ANALYTICS_WORKSPACE_ID: ${{ inputs.log-analytics-workspace-id }}
+        INPUT_LOG_ANALYTICS_SHARED_KEY: ${{ inputs.log-analytics-shared-key }}
+        INPUT_LOG_ANALYTICS_TABLE: ${{ inputs.log-analytics-table }}
+      run: node dist/main.js
