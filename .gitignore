@@ -2,8 +2,11 @@
 # Dependencies
 /node_modules
 
-# Builds
-/dist
+# Builds — ignore all dist output except the committed Action bundle
+/dist/*
+# Exception: Action bundle must be committed so GitHub Actions can run it
+# directly from the repo tree without a build step.
+!/dist/action.cjs
 /*.tgz
 
 # Logs

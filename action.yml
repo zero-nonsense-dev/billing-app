@@ -1,0 +1,39 @@
+name: 'AI Code Reviewer'
+description: >
+  AI-powered pull request code review with Zero Nonsense plan-based limits
+  (free / pro / org) and fail-open billing API handling.
+author: 'zero-nonsense-dev'
+branding:
+  icon: 'eye'
+  color: 'purple'
+
+inputs:
+  github-token:
+    description: >
+      GitHub token for posting review comments and uploading SARIF.
+      Needs pull-requests: write and (for Pro/Org SARIF) security-events: write.
+    required: true
+    default: ${{ github.token }}
+  openai-api-key:
+    description: 'OpenAI API key. Falls back to GitHub Models when omitted.'
+    required: false
+  billing-api-url:
+    description: 'Base URL of the Zero Nonsense billing app.'
+    required: false
+    default: 'https://billing.zerononsense.dev'
+  fail-open:
+    description: >
+      When true (default), proceed with free-tier limits if the billing API is
+      unreachable. Set to false to fail the step on billing errors.
+    required: false
+    default: 'true'
+
+outputs:
+  plan:
+    description: 'Resolved Marketplace plan: free | pro | org'
+  files-reviewed:
+    description: 'Number of files the AI reviewed in this run'
+
+runs:
+  using: 'node20'
+  main: 'dist/action.cjs'
