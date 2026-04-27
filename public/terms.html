@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terms of Service — ZeroNonsense.dev</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #0d0d0d;
+      --paper: #f7f6f2;
+      --rule: #d4d0c8;
+      --accent: #e8ff00;
+      --mono: 'IBM Plex Mono', monospace;
+      --sans: 'IBM Plex Sans', sans-serif;
+    }
+
+    html { font-size: 16px; background: var(--paper); color: var(--ink); }
+
+    body {
+      font-family: var(--sans);
+      font-weight: 300;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    header {
+      border-bottom: 2px solid var(--ink);
+      padding: 1.25rem 2rem;
+      display: flex;
+      align-items: baseline;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .wordmark {
+      font-family: var(--mono);
+      font-weight: 500;
+      font-size: 0.9rem;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      color: var(--ink);
+      background: var(--accent);
+      padding: 0.2rem 0.5rem;
+    }
+
+    .doc-label {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: #666;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    nav a {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid var(--ink);
+      margin-left: auto;
+    }
+    nav a:hover { background: var(--accent); }
+
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 4rem 2rem 6rem;
+    }
+
+    .title-block {
+      border-left: 4px solid var(--ink);
+      padding-left: 1.5rem;
+      margin-bottom: 3.5rem;
+    }
+
+    h1 {
+      font-family: var(--sans);
+      font-weight: 500;
+      font-size: 2rem;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.6rem;
+    }
+
+    .meta {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: #666;
+      letter-spacing: 0.05em;
+    }
+
+    section {
+      border-top: 1px solid var(--rule);
+      padding: 2rem 0;
+    }
+    section:last-of-type { border-bottom: 1px solid var(--rule); }
+
+    h2 {
+      font-family: var(--mono);
+      font-weight: 500;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #444;
+      margin-bottom: 1rem;
+    }
+
+    p { margin-bottom: 0.9rem; font-size: 0.95rem; }
+    p:last-child { margin-bottom: 0; }
+
+    ul, ol { padding-left: 1.25rem; margin-bottom: 0.9rem; }
+    li { font-size: 0.95rem; margin-bottom: 0.35rem; }
+
+    a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+    a:hover { background: var(--accent); text-decoration: none; }
+
+    /* Plan table */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.875rem;
+      margin: 1rem 0;
+    }
+    th {
+      font-family: var(--mono);
+      font-weight: 500;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-align: left;
+      border-bottom: 2px solid var(--ink);
+      padding: 0.5rem 0.75rem 0.5rem 0;
+    }
+    td {
+      border-bottom: 1px solid var(--rule);
+      padding: 0.6rem 0.75rem 0.6rem 0;
+      vertical-align: top;
+    }
+
+    /* Callout */
+    .callout {
+      border-left: 3px solid var(--ink);
+      background: #ebebeb;
+      padding: 0.85rem 1rem;
+      font-size: 0.88rem;
+      margin: 1rem 0;
+    }
+    .callout strong {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+
+    .contact-chip {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      border: 1.5px solid var(--ink);
+      padding: 0.4rem 0.75rem;
+      margin-top: 0.5rem;
+      background: transparent;
+      transition: background 0.15s;
+    }
+    .contact-chip:hover { background: var(--accent); text-decoration: none; }
+
+    footer {
+      border-top: 2px solid var(--ink);
+      padding: 1.25rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    footer span { font-family: var(--mono); font-size: 0.72rem; color: #666; }
+    footer a { font-family: var(--mono); font-size: 0.72rem; color: var(--ink); }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a class="wordmark" href="https://zerononsense.dev">ZeroNonsense.dev</a>
+    <span class="doc-label">Legal</span>
+    <nav><a href="/privacy">Privacy Policy →</a></nav>
+  </header>
+
+  <main class="page">
+
+    <div class="title-block">
+      <h1>Terms of Service</h1>
+      <p class="meta">EFFECTIVE DATE: 27 APRIL 2026 &nbsp;·&nbsp; VERSION 1.0</p>
+    </div>
+
+    <section>
+      <h2>1 — Parties and acceptance</h2>
+      <p>
+        These Terms of Service ("<strong>Terms</strong>") govern your access to and use of the
+        products and services ("<strong>Services</strong>") provided by <strong>ZeroNonsense.dev</strong>,
+        a registered company in the Netherlands ("<strong>ZND</strong>", "<strong>we</strong>",
+        "<strong>us</strong>").
+      </p>
+      <p>
+        By installing a ZND GitHub App, using a ZND GitHub Action, or accessing
+        <code>billing.zerononsense.dev</code>, you ("<strong>Customer</strong>", "<strong>you</strong>")
+        agree to these Terms. If you are accepting on behalf of an organisation, you represent
+        that you have authority to bind that organisation.
+      </p>
+    </section>
+
+    <section>
+      <h2>2 — The services</h2>
+      <p>The Services currently comprise:</p>
+      <ul>
+        <li><strong>SentinelPR</strong> — AI-powered pull-request reviewer (GitHub Action, MIT licence).</li>
+        <li><strong>ReleaseScribe</strong> — Conventional Commits to CHANGELOG and GitHub Release
+          generator (GitHub Action, BUSL-1.1 for production use — see §6).</li>
+        <li><strong>Zero-Nonsense Licenser</strong> — GitHub App that manages Marketplace billing
+          and exposes the <code>/license</code> endpoint used by Actions to resolve plan limits.</li>
+        <li>Future products announced via the GitHub Marketplace listing or
+          <a href="https://zerononsense.dev">zerononsense.dev</a>.</li>
+      </ul>
+      <p>
+        The Services are provided "as-is" and are subject to the GitHub Marketplace
+        <a href="https://docs.github.com/en/site-policy/github-terms/github-marketplace-terms-of-service"
+           target="_blank" rel="noopener">Terms of Service</a>,
+        which apply in addition to these Terms.
+      </p>
+    </section>
+
+    <section>
+      <h2>3 — Plans and billing</h2>
+      <p>Billing is handled entirely through the GitHub Marketplace. Current plans:</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Plan</th>
+            <th>Price</th>
+            <th>Scope</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Community</td>
+            <td>Free</td>
+            <td>Unlimited public repositories; core features</td>
+          </tr>
+          <tr>
+            <td>Pro</td>
+            <td>€9 / repo / month</td>
+            <td>Policy packs, SARIF export, inline fix hints, email support</td>
+          </tr>
+          <tr>
+            <td>Org</td>
+            <td>€19 / org / month</td>
+            <td>Unlimited private repos, org-wide policies</td>
+          </tr>
+          <tr>
+            <td>Enterprise</td>
+            <td>Contact us</td>
+            <td>SSO, custom policies, private models, SLA</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>
+        Prices are in EUR and exclusive of any VAT. GitHub collects payment and remits
+        revenue to us; your payment relationship is with GitHub. Plan changes and
+        cancellations follow
+        <a href="https://docs.github.com/en/billing/managing-billing-for-github-marketplace-apps"
+           target="_blank" rel="noopener">GitHub's billing policies</a>.
+      </p>
+    </section>
+
+    <section>
+      <h2>4 — Acceptable use</h2>
+      <p>You may not use the Services to:</p>
+      <ul>
+        <li>Reverse-engineer, circumvent, or disable plan enforcement or billing checks.</li>
+        <li>Resell or sublicence access to any Service without our written consent.</li>
+        <li>Transmit malicious code or content that violates GitHub's Acceptable Use Policy.</li>
+        <li>Exceed usage limits imposed by your plan in a way that degrades service for others.</li>
+      </ul>
+      <p>
+        We reserve the right to suspend access without notice if we reasonably believe a
+        violation is occurring, and to terminate access after 7 days' notice for repeated or
+        material violations.
+      </p>
+    </section>
+
+    <section>
+      <h2>5 — Uptime and support</h2>
+      <p>
+        We target reasonable availability for <code>billing.zerononsense.dev</code> but do not
+        provide an SLA on free or Pro plans. All Actions are designed to <strong>fail-open</strong>
+        by default — if the billing endpoint is unreachable, the Action proceeds with free-tier
+        limits rather than blocking your workflow.
+      </p>
+      <p>
+        Support is provided via email at
+        <a href="mailto:support@zerononsense.dev">support@zerononsense.dev</a>.
+        Pro plan customers receive a best-efforts response within 2 business days.
+        Enterprise customers receive a response SLA as specified in their order.
+      </p>
+    </section>
+
+    <section>
+      <h2>6 — Licences</h2>
+      <div class="callout">
+        <strong>Important — ReleaseScribe licence</strong>
+        ReleaseScribe is licensed under the
+        <a href="https://mariadb.com/bsl11/" target="_blank" rel="noopener">Business Source Licence 1.1 (BUSL-1.1)</a>.
+        Production use — defined as use that generates revenue or is part of a commercial
+        workflow — requires a paid Marketplace plan. Personal and open-source use is free.
+      </div>
+      <p>
+        SentinelPR and Zero-Nonsense Licenser are licensed under the MIT Licence. You may
+        inspect the source code in the respective repositories under
+        <a href="https://github.com/zero-nonsense-dev" target="_blank" rel="noopener">github.com/zero-nonsense-dev</a>.
+      </p>
+      <p>
+        Nothing in these Terms transfers ownership of any intellectual property. All rights
+        not expressly granted are reserved.
+      </p>
+    </section>
+
+    <section>
+      <h2>7 — Data and privacy</h2>
+      <p>
+        Our collection and use of personal data is described in our
+        <a href="/privacy">Privacy Policy</a>, which is incorporated into these Terms by
+        reference. By using the Services you agree to that policy.
+      </p>
+      <p>
+        Pull-request diffs and source code submitted for review are forwarded to your
+        configured AI provider (Azure OpenAI or OpenAI) and are not stored by us. You are
+        responsible for ensuring you have the right to submit that content to the chosen
+        AI provider under their terms.
+      </p>
+    </section>
+
+    <section>
+      <h2>8 — Disclaimer and limitation of liability</h2>
+      <p>
+        THE SERVICES ARE PROVIDED "AS IS" WITHOUT WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED,
+        INCLUDING WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR
+        NON-INFRINGEMENT.
+      </p>
+      <p>
+        TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, ZND'S TOTAL LIABILITY FOR ANY
+        CLAIM ARISING OUT OF OR RELATING TO THESE TERMS OR THE SERVICES SHALL NOT EXCEED THE
+        GREATER OF (A) THE AMOUNTS PAID BY YOU IN THE 12 MONTHS PRECEDING THE CLAIM OR
+        (B) €50. ZND SHALL NOT BE LIABLE FOR INDIRECT, INCIDENTAL, CONSEQUENTIAL, OR
+        PUNITIVE DAMAGES.
+      </p>
+      <p>
+        AI-generated code review output is informational only. You are solely responsible
+        for evaluating and acting on any suggestions.
+      </p>
+    </section>
+
+    <section>
+      <h2>9 — Governing law and disputes</h2>
+      <p>
+        These Terms are governed by the laws of the Netherlands. Any dispute that cannot be
+        resolved informally shall be submitted exclusively to the competent courts in the
+        Netherlands.
+      </p>
+      <p>
+        If you are a consumer in the EU, you retain any mandatory consumer protection rights
+        applicable in your country of residence.
+      </p>
+    </section>
+
+    <section>
+      <h2>10 — Changes to these terms</h2>
+      <p>
+        We may update these Terms at any time. We will provide at least 30 days' notice
+        of material changes via the GitHub Marketplace listing or by email where we hold
+        your address. Continued use of the Services after the effective date constitutes
+        acceptance of the updated Terms.
+      </p>
+    </section>
+
+    <section>
+      <h2>11 — Contact</h2>
+      <p>Questions about these Terms:</p>
+      <a class="contact-chip" href="mailto:support@zerononsense.dev">support@zerononsense.dev</a>
+    </section>
+
+  </main>
+
+  <footer>
+    <span>© 2026 ZeroNonsense.dev — Netherlands</span>
+    <a href="/privacy">Privacy Policy</a>
+  </footer>
+
+</body>
+</html>

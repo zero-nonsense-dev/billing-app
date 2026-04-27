@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — ZeroNonsense.dev</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #0d0d0d;
+      --paper: #f7f6f2;
+      --rule: #d4d0c8;
+      --accent: #e8ff00;
+      --mono: 'IBM Plex Mono', monospace;
+      --sans: 'IBM Plex Sans', sans-serif;
+    }
+
+    html { font-size: 16px; background: var(--paper); color: var(--ink); }
+
+    body {
+      font-family: var(--sans);
+      font-weight: 300;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    /* ── Header ── */
+    header {
+      border-bottom: 2px solid var(--ink);
+      padding: 1.25rem 2rem;
+      display: flex;
+      align-items: baseline;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .wordmark {
+      font-family: var(--mono);
+      font-weight: 500;
+      font-size: 0.9rem;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      color: var(--ink);
+      background: var(--accent);
+      padding: 0.2rem 0.5rem;
+    }
+
+    .doc-label {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: #666;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    nav a {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid var(--ink);
+      margin-left: auto;
+    }
+    nav a:hover { background: var(--accent); }
+
+    /* ── Layout ── */
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 4rem 2rem 6rem;
+    }
+
+    /* ── Title block ── */
+    .title-block {
+      border-left: 4px solid var(--ink);
+      padding-left: 1.5rem;
+      margin-bottom: 3.5rem;
+    }
+
+    h1 {
+      font-family: var(--sans);
+      font-weight: 500;
+      font-size: 2rem;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.6rem;
+    }
+
+    .meta {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: #666;
+      letter-spacing: 0.05em;
+    }
+
+    /* ── Sections ── */
+    section {
+      border-top: 1px solid var(--rule);
+      padding: 2rem 0;
+    }
+
+    section:last-of-type { border-bottom: 1px solid var(--rule); }
+
+    h2 {
+      font-family: var(--mono);
+      font-weight: 500;
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #444;
+      margin-bottom: 1rem;
+    }
+
+    p { margin-bottom: 0.9rem; font-size: 0.95rem; }
+    p:last-child { margin-bottom: 0; }
+
+    ul {
+      padding-left: 1.25rem;
+      margin-bottom: 0.9rem;
+    }
+    li { font-size: 0.95rem; margin-bottom: 0.35rem; }
+
+    a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+    a:hover { background: var(--accent); text-decoration: none; }
+
+    /* ── Contact chip ── */
+    .contact-chip {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      border: 1.5px solid var(--ink);
+      padding: 0.4rem 0.75rem;
+      margin-top: 0.5rem;
+      background: transparent;
+      transition: background 0.15s;
+    }
+    .contact-chip:hover { background: var(--accent); text-decoration: none; }
+
+    /* ── Table ── */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.875rem;
+      margin: 1rem 0;
+    }
+    th {
+      font-family: var(--mono);
+      font-weight: 500;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-align: left;
+      border-bottom: 2px solid var(--ink);
+      padding: 0.5rem 0.75rem 0.5rem 0;
+    }
+    td {
+      border-bottom: 1px solid var(--rule);
+      padding: 0.6rem 0.75rem 0.6rem 0;
+      vertical-align: top;
+    }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 2px solid var(--ink);
+      padding: 1.25rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    footer span {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: #666;
+    }
+    footer a {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--ink);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a class="wordmark" href="https://zerononsense.dev">ZeroNonsense.dev</a>
+    <span class="doc-label">Legal</span>
+    <nav><a href="/terms">Terms of Service →</a></nav>
+  </header>
+
+  <main class="page">
+
+    <div class="title-block">
+      <h1>Privacy Policy</h1>
+      <p class="meta">EFFECTIVE DATE: 27 APRIL 2026 &nbsp;·&nbsp; VERSION 1.0</p>
+    </div>
+
+    <section>
+      <h2>1 — Who we are</h2>
+      <p>
+        This policy applies to services operated by <strong>ZeroNonsense.dev</strong>, a registered
+        company in the Netherlands ("<strong>we</strong>", "<strong>us</strong>", "<strong>our</strong>").
+        We are the data controller for personal data processed in connection with the
+        Zero-Nonsense Dev product suite, including the Zero-Nonsense Licenser GitHub App,
+        SentinelPR, and ReleaseScribe.
+      </p>
+      <p>
+        Contact:<br />
+        <a class="contact-chip" href="mailto:privacy@zerononsense.dev">privacy@zerononsense.dev</a>
+      </p>
+    </section>
+
+    <section>
+      <h2>2 — What data we collect and why</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>Examples</th>
+            <th>Purpose</th>
+            <th>Legal basis (GDPR)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Account identifiers</td>
+            <td>GitHub org/user login, installation ID</td>
+            <td>Identify the account, enforce plan limits</td>
+            <td>Art. 6(1)(b) — contract performance</td>
+          </tr>
+          <tr>
+            <td>Marketplace billing data</td>
+            <td>Plan name, billing cycle, pending cancellations</td>
+            <td>Deliver the correct tier of service</td>
+            <td>Art. 6(1)(b) — contract performance</td>
+          </tr>
+          <tr>
+            <td>Usage metadata</td>
+            <td>Repo names, number of files reviewed per run</td>
+            <td>Enforce per-plan limits; debug service errors</td>
+            <td>Art. 6(1)(b) — contract performance</td>
+          </tr>
+          <tr>
+            <td>Access logs</td>
+            <td>IP address, HTTP method, timestamp, response code</td>
+            <td>Security monitoring, abuse prevention</td>
+            <td>Art. 6(1)(f) — legitimate interests</td>
+          </tr>
+          <tr>
+            <td>Support correspondence</td>
+            <td>Email address, message content</td>
+            <td>Respond to enquiries</td>
+            <td>Art. 6(1)(b) or (f)</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>
+        We do not process source code content. Pull-request diffs are sent directly to the
+        configured AI provider (Azure OpenAI or OpenAI) and are never stored by us.
+      </p>
+    </section>
+
+    <section>
+      <h2>3 — Sub-processors and third parties</h2>
+      <p>We rely on the following processors:</p>
+      <ul>
+        <li><strong>GitHub, Inc.</strong> — Marketplace billing events, webhook delivery, token
+          verification. Governed by GitHub's own privacy policy and data processing agreement.</li>
+        <li><strong>Microsoft Azure (West Europe)</strong> — Hosting (Azure Container Apps), secrets
+          management (Azure Key Vault), log storage (Log Analytics). Data resides in the EU.</li>
+        <li><strong>Azure OpenAI / OpenAI</strong> — AI inference for code review. Used only when
+          you provide an API key; we do not retain inference inputs or outputs.</li>
+      </ul>
+      <p>We do not sell or rent personal data to any third party.</p>
+    </section>
+
+    <section>
+      <h2>4 — Data retention</h2>
+      <p>
+        Account and plan records are retained for the duration of your active subscription
+        plus 90 days after cancellation, to handle billing disputes. Access logs are retained
+        for 30 days (Log Analytics workspace default). Support correspondence is retained for
+        2 years.
+      </p>
+      <p>
+        When the service uses an in-memory or file-based store, data may be cleared on a
+        container restart. No long-term retention occurs in that case.
+      </p>
+    </section>
+
+    <section>
+      <h2>5 — Your rights under GDPR</h2>
+      <p>As a data subject you have the right to:</p>
+      <ul>
+        <li><strong>Access</strong> — request a copy of the data we hold about you.</li>
+        <li><strong>Rectification</strong> — ask us to correct inaccurate data.</li>
+        <li><strong>Erasure</strong> — ask us to delete your data, subject to legal obligations.</li>
+        <li><strong>Portability</strong> — receive your data in a structured, machine-readable format.</li>
+        <li><strong>Objection</strong> — object to processing based on legitimate interests.</li>
+        <li><strong>Restriction</strong> — ask us to restrict processing in certain circumstances.</li>
+      </ul>
+      <p>
+        To exercise any of these rights, email
+        <a href="mailto:privacy@zerononsense.dev">privacy@zerononsense.dev</a>.
+        We will respond within 30 days.
+      </p>
+      <p>
+        You also have the right to lodge a complaint with the Dutch supervisory authority:
+        <strong>Autoriteit Persoonsgegevens</strong>
+        (<a href="https://www.autoriteitpersoonsgegevens.nl" target="_blank" rel="noopener">autoriteitpersoonsgegevens.nl</a>).
+      </p>
+    </section>
+
+    <section>
+      <h2>6 — Cookies and tracking</h2>
+      <p>
+        The <code>billing.zerononsense.dev</code> API does not use cookies or client-side
+        tracking. The <code>/setup</code> confirmation page is a plain HTML response with
+        no analytics.
+      </p>
+    </section>
+
+    <section>
+      <h2>7 — Security</h2>
+      <p>
+        Secrets are stored in Azure Key Vault and injected at runtime; they are never
+        committed to source code. All traffic is TLS-terminated. Webhook payloads are
+        verified with HMAC-SHA256 before processing. We will notify affected users of
+        any personal data breach without undue delay as required by Art. 33–34 GDPR.
+      </p>
+    </section>
+
+    <section>
+      <h2>8 — Changes to this policy</h2>
+      <p>
+        We may update this policy to reflect changes in our services or legal requirements.
+        The effective date at the top of this page will be updated accordingly. Material
+        changes will be communicated via the GitHub App's listing page or by email where
+        we hold your address.
+      </p>
+    </section>
+
+  </main>
+
+  <footer>
+    <span>© 2026 ZeroNonsense.dev — Netherlands</span>
+    <a href="/terms">Terms of Service</a>
+  </footer>
+
+</body>
+</html>
