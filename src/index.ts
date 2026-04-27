@@ -1,4 +1,4 @@
-
+import path from 'path';
 import express from 'express';
 import { App } from '@octokit/app';
 import { Octokit } from '@octokit/rest';
@@ -6,6 +6,13 @@ import { createNodeMiddleware } from '@octokit/webhooks';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { JsonFileStore, type ILicenseStore, type LicenseRecord } from './store.js';
+
+app.get('/privacy', (_req, res) =>
+  res.sendFile(path.join(__dirname, '../public/privacy.html'))
+);
+app.get('/terms', (_req, res) =>
+  res.sendFile(path.join(__dirname, '../public/terms.html'))
+);
 
 // ─── Configuration ───────────────────────────────────────────────────────────
 // Required: APP_ID, PRIVATE_KEY (PEM), CLIENT_ID, CLIENT_SECRET, WEBHOOK_SECRET
