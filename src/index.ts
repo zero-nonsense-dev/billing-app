@@ -187,18 +187,19 @@ reconcile();
 const RECONCILE_MS = Number(process.env.RECONCILE_INTERVAL_MS ?? 6 * 60 * 60 * 1000);
 setInterval(reconcile, RECONCILE_MS).unref();
 
-const app = express();
-
-// ── Static legal pages ───────────────────────────────────────────────────────
-app.get('/privacy', (_req, res) =>
-  res.sendFile(path.join(__dirname, '../public/privacy.html'))
-);
-app.get('/terms', (_req, res) =>
-  res.sendFile(path.join(__dirname, '../public/terms.html'))
-);
-
 // ─── Express server ──────────────────────────────────────────────────────────
 const server = express();
+
+// ── Static legal pages ───────────────────────────────────────────────────────
+// Registered on `server` (not a separate `app` instance) — `server.listen()` is
+// what actually receives traffic. Putting these on a sibling `express()` would
+// 404 silently in production with `x-powered-by: Express`.
+server.get('/privacy', (_req, res) =>
+  res.sendFile(path.join(__dirname, '../public/privacy.html'))
+);
+server.get('/terms', (_req, res) =>
+  res.sendFile(path.join(__dirname, '../public/terms.html'))
+);
 
 // createNodeMiddleware verifies X-Hub-Signature-256 before dispatching.
 // Path must match hook_attributes.url in docs/manifest.yaml.
