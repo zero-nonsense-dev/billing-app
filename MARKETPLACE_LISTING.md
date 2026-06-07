@@ -19,29 +19,66 @@ Keep them in sync by editing this file first and pasting from here.
 
 ## Short tagline (≤ 80 chars, for listing card / search results)
 
-> Marketplace billing for the Zero-Nonsense Dev Action suite.
+> Billing layer for SentinelPR, ReleaseScribe, and the Zero-Nonsense Dev suite.
 
 ## Elevator pitch (1–2 sentences, for listing intro)
 
-> The Zero Nonsense Licenser unlocks paid tiers across the Zero-Nonsense
-> Dev Action suite — SentinelPR, ReleaseScribe, and forthcoming
-> Actions — without ever reading your source code. Install once at the
-> org level and your Actions resolve their plan automatically at
-> runtime.
+> Zero Nonsense Licenser is the billing companion for the Zero-Nonsense
+> Dev Action suite — install it alongside SentinelPR or ReleaseScribe
+> and your Actions resolve their plan automatically at runtime, without
+> ever touching your source code.
+
+## Getting Started section (Marketplace listing form fields)
+
+> **Note:** These fields replace the GitHub template placeholders that caused the May 6 rejection.
+> Delete the `@example-agent` Example Prompts section entirely — it is a Copilot Extension
+> template artifact that does not apply to this App.
+
+### Requirements
+
+```
+Plan: Community plan is free — no paid subscription required.
+User Permissions: Standard GitHub App installation permissions (metadata: read, contents: read).
+Availability: Generally Available (GA). No waitlist, no beta access required.
+```
+
+(Omit the "Onboarding Video" line — there is no video. An empty placeholder is worse than no entry.)
+
+### Setup Process (3 steps)
+
+```
+1. Install the SentinelPR Action from the GitHub Marketplace and add the workflow file to your
+   repository (see SentinelPR README for the 5-line yaml snippet).
+
+2. Install Zero Nonsense Licenser on the same repository or at the organization level.
+
+3. Push a pull request — the Action calls /license automatically and resolves your plan in
+   under 100ms. No further configuration required.
+```
+
+### Example Prompts
+
+**Delete this section entirely.** The `@example-agent` block is a Copilot Extension template field.
+Zero Nonsense Licenser is a billing App, not a Copilot Extension. Leaving placeholder content here
+is a rejection signal.
+
+---
 
 ## Description (markdown, for App settings field + Marketplace listing body)
 
 ```markdown
-**Zero Nonsense Licenser** is the GitHub Marketplace billing companion
-for the Zero-Nonsense Dev Action suite — including
-[SentinelPR](https://github.com/zero-nonsense-dev/sentinelpr-action),
-[ReleaseScribe](https://github.com/zero-nonsense-dev/releasescribe-action),
-and forthcoming Actions like ZN-SecAgent.
+**Zero Nonsense Licenser** is the billing layer for the Zero-Nonsense
+Dev Action suite. If you're installing
+[SentinelPR](https://github.com/zero-nonsense-dev/sentinelpr-action) —
+AI code review for every pull request — install this App alongside it
+to activate plan entitlements. It works the same way for
+[ReleaseScribe](https://github.com/zero-nonsense-dev/releasescribe-action)
+and future suite Actions.
 
 Install once on your organization (or on individual repositories). At
 runtime, each Action calls `/license` with your workflow's
 `GITHUB_TOKEN` and resolves your plan — `free`, `pro`, or `org` — in
-under 100&nbsp;ms.
+under 100&nbsp;ms. No configuration beyond installation.
 
 ### What this App does
 
@@ -269,9 +306,12 @@ pricing. Suggested initial pricing (refine before submission):
 
 | Plan | Monthly | Annual | Per | Notes |
 |---|---|---|---|---|
-| Community | $0 | $0 | — | Available now |
-| Pro | $19 | $190 | repo | Unlocks Pro features in any installed Action |
-| Org | $99 | $990 | org | Unlimited repos, org-wide config |
+| Community | $0 | $0 | — | Available now (free listing, no VP required) |
+| Pro | $9 | $90 | repo | Unlocks Pro features in any installed Action |
+| Team | $49 | $490 | org | Up to 20 repos, team-wide config |
+| Org | $149 | $1,490 | org | Unlimited repos, org-wide config |
+
+(Pricing decided 2026-05-15. Add paid plans as a config flip the day VP approval lands — no build required.)
 
 (Enterprise — custom — handled outside Marketplace.)
 
